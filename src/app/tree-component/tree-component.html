@@ -1,0 +1,19 @@
+<div>
+    <h1>Tree Component</h1>
+    <ng-template #personTemplate let-list>
+      <ul>
+        <li *ngFor="let person of list">
+          {{ person.personName }}
+
+          <div *ngIf="person.children?.length > 0">
+            <ng-container 
+              *ngTemplateOutlet="personTemplate; context: { $implicit: person.children }">
+            </ng-container>
+          </div>
+        </li>
+      </ul>
+    </ng-template>
+    <ng-container 
+      *ngTemplateOutlet="personTemplate; context: { $implicit: personTree }">
+    </ng-container>
+</div>
